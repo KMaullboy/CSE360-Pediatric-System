@@ -1,0 +1,2 @@
+myusername|mypassword|Nurse|
+yourusername|yourpassword|Doctor|
