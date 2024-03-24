@@ -1,6 +1,7 @@
 package application;
 
 import java.io.BufferedReader;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
@@ -20,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -42,7 +44,9 @@ public class CreateAccountController implements Initializable{
 	
 	@FXML
 	private TextField firstNameField, lastNameField, addressLine1Field, addressLine2Field,
-					  cityField, stateField, zipCodeField, birthYearField, passwordField, usernameField;
+					  cityField, stateField, zipCodeField, birthYearField, usernameField;
+	@FXML
+	private PasswordField passwordField;
     @FXML
     private Button submit, returnToLogin;
     @FXML
@@ -139,7 +143,7 @@ public class CreateAccountController implements Initializable{
         			}
         			
         			for (int i = 0; i < info.length; i++) {
-        				System.out.println(info[i]);
+        				//System.out.println(info[i]);
         			}
         			
         			/*
@@ -148,7 +152,7 @@ public class CreateAccountController implements Initializable{
         			 */
         			if (info[0].equals(username) && info[1].equals(password)) 
         			{
-        				System.out.println("Account already exists");
+        				//System.out.println("Account already exists");
         				throw new Exception("Account Already Exists");
         			}
         		}
@@ -175,7 +179,7 @@ public class CreateAccountController implements Initializable{
     	}
     	catch (NumberFormatException e)
     	{
-    		System.out.println("Only numbers inBirth Year and Zip Code Fields!");
+    		//System.out.println("Only numbers inBirth Year and Zip Code Fields!");
     	}
     	catch (Exception e) 
     	{

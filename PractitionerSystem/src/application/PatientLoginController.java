@@ -1,6 +1,7 @@
 package application;
 
 import java.io.BufferedReader;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -42,7 +44,9 @@ public class PatientLoginController implements Initializable
 	 */
 	
 	@FXML
-	private TextField usernameField, passwordField;
+	private TextField usernameField;
+	@FXML
+	private PasswordField passwordField;
 	@FXML
 	private Button login;
 	@FXML
@@ -98,8 +102,8 @@ public class PatientLoginController implements Initializable
 		username = usernameField.getText();
 		password = passwordField.getText();
 		
-		System.out.println(username);
-		System.out.println(password);
+		//System.out.println(username);
+		//System.out.println(password);
 		
 		/*
 		 * Path to the PatientInformation.txt file
@@ -107,7 +111,7 @@ public class PatientLoginController implements Initializable
 		 * This file is where we will find the usernames and passwords for users
 		 * of the patientView.
 		 */
-		String path = "PatientInformation.txt"; 
+		String path = "PatientInformation.txt";
 		
 		File f = new File(path);
 		
@@ -143,21 +147,21 @@ public class PatientLoginController implements Initializable
 	    			}
 	    			
 	    			for (int i = 0; i < info.length; i++) {
-	    				System.out.println(info[i]);
+	    				//System.out.println(info[i]);
 	    			}
 	    			
 	    			//If the username and password matches any in the file
 	    			if (info[0].equals(username) && info[1].equals(password)) 
 	    			{
-	    				System.out.println("Login Authenticated");
+	    				//System.out.println("Login Authenticated");
 	    				
 	    				if (rememberMe.isSelected()) //Remember the username 
 	    				{
-	    					System.out.println("Remember Me is selected");
+	    					//System.out.println("Remember Me is selected");
 	    					rememberUsername(username);
 	    				} else //Don't remember the username
 	    				{
-	    					System.out.println("Remember Me is not selected");
+	    					//System.out.println("Remember Me is not selected");
 	    					rememberUsername("");
 	    				}
 	    				
@@ -172,7 +176,7 @@ public class PatientLoginController implements Initializable
 		}
 		catch (Exception e)
 		{
-			System.out.println("Login Failed");
+			//System.out.println("Login Failed");
 			return;
 		}
     }
@@ -189,7 +193,6 @@ public class PatientLoginController implements Initializable
 	{
 		bw = new BufferedWriter(new FileWriter("RememberedUsername.txt"));
 		
-    	
 		bw.write(username);
 		
 		bw.close();
