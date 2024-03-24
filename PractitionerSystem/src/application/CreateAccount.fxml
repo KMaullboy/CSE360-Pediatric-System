@@ -39,9 +39,9 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <TextField fx:id="usernameField" disable="true" layoutX="297.0" layoutY="751.0" prefHeight="26.0" prefWidth="235.0" style="-fx-background-radius: 10px;" text="FirstName/LastName/MMYY" />
-            <Label layoutX="340.0" layoutY="725.0" text="Auto-Generated Username" textFill="#25328a" />
-            <Label layoutX="353.0" layoutY="786.0" text="This is your username." />
+            <TextField fx:id="usernameField" disable="true" layoutX="297.0" layoutY="751.0" prefHeight="26.0" prefWidth="235.0" style="-fx-background-radius: 10px;" text="FirstName/LastName/MMYY/ID" />
+            <Label layoutX="341.0" layoutY="723.0" text="Auto-Generated Username" textFill="#25328a" />
+            <Label layoutX="354.0" layoutY="786.0" text="This is your username" />
             <Label layoutX="315.0" layoutY="803.0" text="Please save this for login purposes" />
             <Label layoutX="211.0" layoutY="348.0" text="First Name" />
             <Label layoutX="415.0" layoutY="348.0" text="Last Name" />
@@ -50,7 +50,7 @@
             <Label layoutX="254.0" layoutY="565.0" text="Birth Month" />
             <Label layoutX="356.0" layoutY="621.0" text="Create a Password:" />
             <Label layoutX="351.0" layoutY="512.0" text="State" />
-            <Label layoutX="211.0" layoutY="405.0" text="Address Line 1" />
+            <Label fx:id="IDField" layoutX="211.0" layoutY="405.0" text="Address Line 1" />
             <Label layoutX="211.0" layoutY="455.0" text="Address Line 2" />
             <Label layoutX="211.0" layoutY="512.0" text="City" />
             <PasswordField fx:id="passwordField" layoutX="301.0" layoutY="646.0" prefHeight="26.0" prefWidth="215.0" style="-fx-background-radius: 10px;" />

@@ -99,8 +99,8 @@ public class PatientLoginController implements Initializable
 	public void login(ActionEvent event) throws IOException 
     {
 		//Get the username and password entered by the user
-		username = usernameField.getText();
-		password = passwordField.getText();
+		username = usernameField.getText().replaceAll("\n", "");
+		password = passwordField.getText().replaceAll("\n", "");
 		
 		//System.out.println(username);
 		//System.out.println(password);
@@ -111,7 +111,7 @@ public class PatientLoginController implements Initializable
 		 * This file is where we will find the usernames and passwords for users
 		 * of the patientView.
 		 */
-		String path = "PatientInformation.txt";
+		String path = username + "_PatientInfo.txt";
 		
 		File f = new File(path);
 		
@@ -121,7 +121,7 @@ public class PatientLoginController implements Initializable
 			if (!f.exists()) 
 			{
 	            // Create the directory along with any necessary parent directories
-	            boolean created = f.createNewFile();
+	            System.out.println("File for username does not exist");
 			}
 			else 
 			{
@@ -132,46 +132,26 @@ public class PatientLoginController implements Initializable
 				 * 
 				 * Format: Username|Password|Addressline1|AddressLine2|City|State|Zip|BirthMonth|BirthYear
 				 */
-				br = new BufferedReader(new FileReader("PatientInformation.txt"));
-	    		
-	    		String line;
-	    		
-	    		while ((line = br.readLine()) != null) 
-	    		{
-	    			//Parse the line read and split it into sections separated by "|"
-	    			String[] info = line.split("\\|");
-	    			
-	    			if (info.length == 1) 
-	    			{
-	    				break;
-	    			}
-	    			
-	    			for (int i = 0; i < info.length; i++) {
-	    				//System.out.println(info[i]);
-	    			}
-	    			
-	    			//If the username and password matches any in the file
-	    			if (info[0].equals(username) && info[1].equals(password)) 
-	    			{
-	    				//System.out.println("Login Authenticated");
-	    				
-	    				if (rememberMe.isSelected()) //Remember the username 
-	    				{
-	    					//System.out.println("Remember Me is selected");
-	    					rememberUsername(username);
-	    				} else //Don't remember the username
-	    				{
-	    					//System.out.println("Remember Me is not selected");
-	    					rememberUsername("");
-	    				}
-	    				
-	    				//Log user into the PatientView page
-	    				switchtoPatientView(event);
-	    				return;
-	    			}
-	    		}
-	    		throw new Exception("Username or Password is incorrect");
-	    		
+				PatientInfo PI = new PatientInfo(path);
+				
+				if (PI.password.equals(password))
+				{
+					if (rememberMe.isSelected()) //Remember the username 
+    				{
+    					//System.out.println("Remember Me is selected");
+    					rememberUsername(username);
+    				} else //Don't remember the username
+    				{
+    					//System.out.println("Remember Me is not selected");
+    					rememberUsername("");
+    				}
+    				
+    				//Log user into the PatientView page
+    				switchtoPatientView(event);
+    				return;
+				}
+				
+				System.out.println("password was wrong");
 			}
 		}
 		catch (Exception e)

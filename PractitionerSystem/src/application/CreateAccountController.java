@@ -94,13 +94,7 @@ public class CreateAccountController implements Initializable{
     		month = monthChoiceBox.getValue();
     	
     		//Validates the age of the user
-    		if (birthYear > currentYear) 
-    		{
-    			throw new Exception("Invalid Age");
-    		}
-
-    		//Generates the user's username
-    		username = firstName + lastName + month + String.valueOf(birthYear % 100);
+    		
     		
     		/*
     		 * Path to the PatientInformation.txt file
@@ -109,84 +103,78 @@ public class CreateAccountController implements Initializable{
     		 * of the patientView.
     		 */
     		
-    		String path = "PatientInformation.txt";
-    		
-    		File f = new File(path);
-    		
-    		if (!f.exists()) //Create the file if it does not exist already
-    		{
-                // Create the directory along with any necessary parent directories
-                boolean created = f.createNewFile();
-    		}
-    		else 
-    		{
-    			/*
-    			 * Read every line of the file and check if the username generated and password
-    			 * entered by the user matches the username and password of any other user
-    			 * stored in the file.
-    			 * 
-    			 * Format: Username|Password|Addressline1|AddressLine2|City|State|Zip|BirthMonth|BirthYear
-    			 */
+    		if ( !firstNameField.getText().equals("") && !lastNameField.getText().equals("") &&
+        			!addressLine1Field.getText().equals("") && !cityField.getText().equals("") &&
+        			!stateField.getText().equals("") && !birthYearField.getText().equals("") && 
+        			!passwordField.getText().equals(""))
+        	{
     			
-    			br = new BufferedReader(new FileReader("PatientInformation.txt"));
+    			if (birthYear > currentYear) 
+	    		{
+	    			throw new Exception("Invalid Age");
+	    		}
+				
+        		//If not, save all the information in PatientID_PatientInfo.txt
         		
-        		String line;
-        		
-        		//Parse the line read and split it into sections separated by "|"
-        		while ((line = br.readLine()) != null) 
-        		{
-        			String[] info = line.split("\\|");
+        		//Start by generating an ID, keep trying until an ID is generated
+        		int ID = 0;
+        		File f;
+        		while (true) 
+        		{                	
+        			username = String.valueOf(firstName.charAt(0)) + String.valueOf(lastName.charAt(0)) +  month + String.valueOf(birthYear % 100)
+					+ String.format("%05d", ID);
         			
-        			if (info.length == 1) 
+            		String path = username + "_PatientInfo.txt";
+            		
+        			f = new File(path);
+        			
+        			if (!f.exists())
         			{
-        				break;
+        				//Create this file
+        				try {
+							f.createNewFile();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+        				
+        				System.out.println("File Created");
+        				
+        				usernameField.setText(username);
+        				
+        				//Get all patient information
+        				String patientInformation = firstNameField.getText() + "\n" + lastNameField.getText() 
+        				+ "\n" + addressLine1Field.getText() + "\n" + addressLine2Field.getText() + "\n" + 
+        				cityField.getText() + "\n" + stateField.getText() + "\n" + zipCodeField.getText()
+        				 + "\n" + monthChoiceBox.getValue() + "\n" + birthYearField.getText()
+        				 + "\n" + usernameField.getText() + "\n" + passwordField.getText();
+       	
+        				/*
+        				 * Store information in newly created text file
+        				 */
+        				try {
+							bw = new BufferedWriter(new FileWriter(path));
+							bw.write(patientInformation);
+            				bw.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+        				return;
         			}
-        			
-        			for (int i = 0; i < info.length; i++) {
-        				//System.out.println(info[i]);
-        			}
-        			
-        			/*
-        			 * If the username and password combination matches any other user, 
-        			 * do not create the account
-        			 */
-        			if (info[0].equals(username) && info[1].equals(password)) 
+        			else if (ID == 99999) 
         			{
-        				//System.out.println("Account already exists");
-        				throw new Exception("Account Already Exists");
+        				//No unique 5-Digit ID's available
+        				System.out.println("No ID available");
+        				return;
         			}
+        			ID++;
         		}
-    		}
-    		
-    		 //If the account is to be created, display the generated username to the user
-    		usernameField.setText(username);
-    	
-    		//Format all the user information entered so that it can be stored in PatientInformation.txt
-    		patientInformation = username + "|" + password + "|" + firstName + "|" + lastName + "|" + 
-    	                     addressLine1 + "|" + addressLine2 + "|" + city + "|" + state + "|" + 
-    	                     zipCode + "|" + month + "|" + birthYear + "\n";
-    	
-    		/*
-    		 * Store the new patient information in PatientInformation.txt. 
-    		 * The true parameter means that the file will be appended to, not overwritten
-    		 */
-    		bw = new BufferedWriter(new FileWriter("PatientInformation.txt", true));
-    		
-    	
-    		bw.write(patientInformation);
-    		
-    		bw.close();
-    	}
-    	catch (NumberFormatException e)
-    	{
-    		//System.out.println("Only numbers inBirth Year and Zip Code Fields!");
-    	}
-    	catch (Exception e) 
-    	{
-    		System.out.println(e);
-    	}
-    	
-    	
+        	}
+    	} catch(Exception e) {
+			e.printStackTrace();
+		}
     	
     	return;
     }
