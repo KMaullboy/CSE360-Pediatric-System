@@ -2,12 +2,195 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="435.0" prefWidth="436.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NurseViewController">
+<AnchorPane prefHeight="581.0" prefWidth="788.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NurseViewController">
    <children>
-      <AnchorPane layoutX="-88.0" layoutY="-167.0" prefHeight="200.0" prefWidth="200.0" />
-      <Label layoutX="152.0" layoutY="177.0" text="Nurse View" />
-      <Button layoutX="156.0" layoutY="297.0" mnemonicParsing="false" onAction="#switchtoPractitionerLogin" text="Logout" />
+      <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#ebebeb" height="178.0" layoutX="16.0" layoutY="42.0" stroke="#00578d" strokeType="INSIDE" width="325.0" />
+      <AnchorPane layoutX="-88.0" layoutY="-167.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Label layoutX="106.0" layoutY="181.0" text="Patient Information">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <Button layoutX="612.0" layoutY="9.0" mnemonicParsing="false" onAction="#switchtoPractitionerLogin" text="Logout" />
+      <TextField fx:id="firstNameField" layoutX="25.0" layoutY="84.0" prefHeight="26.0" prefWidth="140.0" style="-fx-background-radius: 10;" />
+      <TextField fx:id="lastNameField" layoutX="176.0" layoutY="84.0" prefHeight="26.0" prefWidth="140.0" style="-fx-background-radius: 10;" />
+      <TextField fx:id="dateOfBirthField" layoutX="25.0" layoutY="129.0" prefHeight="26.0" prefWidth="140.0" style="-fx-background-radius: 10;" />
+      <TextField fx:id="ageField" layoutX="175.0" layoutY="129.0" prefHeight="26.0" prefWidth="84.0" style="-fx-background-radius: 10;" />
+      <TextField fx:id="dateField" layoutX="26.0" layoutY="175.0" prefHeight="26.0" prefWidth="140.0" style="-fx-background-radius: 10;" />
+      <TextField fx:id="IDField" layoutX="178.0" layoutY="175.0" prefHeight="26.0" prefWidth="140.0" style="-fx-background-radius: 10;" />
+      <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#ebebeb" height="145.0" layoutX="14.0" layoutY="228.0" stroke="#00578d" strokeType="INSIDE" width="325.0" />
+      <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#ebebeb" height="180.0" layoutX="14.0" layoutY="383.0" stroke="#00578d" strokeType="INSIDE" width="325.0" />
+      <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#ebebeb" height="73.0" layoutX="348.0" layoutY="41.0" stroke="#00578d" strokeType="INSIDE" width="349.0" />
+      <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#ebebeb" height="141.0" layoutX="348.0" layoutY="119.0" stroke="#00578d" strokeType="INSIDE" width="172.0" />
+      <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#ebebeb" height="143.0" layoutX="527.0" layoutY="118.0" stroke="#00578d" strokeType="INSIDE" width="172.0" />
+      <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#ebebeb" height="90.0" layoutX="346.0" layoutY="269.0" stroke="#00578d" strokeType="INSIDE" width="349.0" />
+      <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#ebebeb" height="194.0" layoutX="346.0" layoutY="370.0" stroke="#00578d" strokeType="INSIDE" width="112.0" />
+      <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#ebebeb" height="194.0" layoutX="470.0" layoutY="371.0" stroke="#00578d" strokeType="INSIDE" width="112.0" />
+      <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#ebebeb" height="194.0" layoutX="592.0" layoutY="370.0" stroke="#00578d" strokeType="INSIDE" width="107.0" />
+      <TextField fx:id="insuranceNameField" layoutX="29.0" layoutY="268.0" prefHeight="26.0" prefWidth="293.0" style="-fx-background-radius: 10;" />
+      <TextField fx:id="memberIDField" layoutX="31.0" layoutY="322.0" prefHeight="26.0" prefWidth="140.0" style="-fx-background-radius: 10;" />
+      <TextField fx:id="groupNumberField" layoutX="183.0" layoutY="322.0" prefHeight="26.0" prefWidth="140.0" style="-fx-background-radius: 10;" />
+      <TextField fx:id="pharmacyNameField" layoutX="31.0" layoutY="434.0" prefHeight="26.0" prefWidth="293.0" style="-fx-background-radius: 10;" />
+      <TextField fx:id="pharmacyAddressField" layoutX="32.0" layoutY="478.0" prefHeight="26.0" prefWidth="293.0" style="-fx-background-radius: 10;" />
+      <TextField fx:id="pharmacyPhoneNumberField" layoutX="33.0" layoutY="520.0" prefHeight="26.0" prefWidth="140.0" style="-fx-background-radius: 10;" />
+      <TextField fx:id="heightField" layoutX="355.0" layoutY="82.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-radius: 10;" />
+      <TextField fx:id="weightField" layoutX="438.0" layoutY="82.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-radius: 10;" />
+      <TextField fx:id="bodyTemperatureField" layoutX="519.0" layoutY="82.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-radius: 10;" />
+      <TextField fx:id="bloodPressureField" layoutX="601.0" layoutY="82.0" prefHeight="26.0" prefWidth="77.0" style="-fx-background-radius: 10;" />
+      <TextArea fx:id="allergiesField" layoutX="359.0" layoutY="151.0" prefHeight="97.0" prefWidth="151.0" style="-fx-background-radius: 10;" />
+      <TextArea fx:id="healthConcernsField" layoutX="536.0" layoutY="151.0" prefHeight="97.0" prefWidth="151.0" style="-fx-background-radius: 10;" />
+      <TextArea fx:id="notesField" layoutX="363.0" layoutY="300.0" prefHeight="51.0" prefWidth="315.0" style="-fx-background-radius: 10;" />
+      <TextArea fx:id="previousHealthIssuesField" layoutX="356.0" layoutY="404.0" prefHeight="145.0" prefWidth="90.0" style="-fx-background-radius: 10;" />
+      <TextArea fx:id="historyField" layoutX="601.0" layoutY="404.0" prefHeight="145.0" prefWidth="90.0" style="-fx-background-radius: 10;" />
+      <TextArea fx:id="previousPrescribedMedsField" layoutX="481.0" layoutY="404.0" prefHeight="145.0" prefWidth="90.0" style="-fx-background-radius: 10;" />
+      <Label layoutX="28.0" layoutY="69.0" text="First Name">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="177.0" layoutY="69.0" text="Last Name">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="113.0" text="Date of Birth">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="177.0" layoutY="114.0" text="Age">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="159.0" text="Date">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="177.0" layoutY="159.0" text="ID">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="27.0" layoutY="251.0" text="Name of Insurance">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="28.0" layoutY="305.0" text="Member ID">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="181.0" layoutY="305.0" text="Group Number">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="418.0" text="Name of Pharmacy">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="463.0" text="Address">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="32.0" layoutY="506.0" text="Phone Number">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="357.0" layoutY="67.0" text="Height">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="441.0" layoutY="67.0" text="Weight">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="599.0" layoutY="67.0" text="Blood Pressure (12+)">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="521.0" layoutY="67.0" text="Body Temp">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="357.0" layoutY="130.0" text="Known Allergies" textFill="#1446bc">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="356.0" layoutY="41.0" text="Vitals" textFill="#1446bc">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="536.0" layoutY="130.0" text="Health Concerns" textFill="#1446bc">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="367.0" layoutY="279.0" text="Notes" textFill="#1446bc">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="364.0" layoutY="377.0" text="Previous Health" textFill="#1446bc">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="475.0" layoutY="377.0" text="Previously Prescribed" textFill="#1446bc">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="385.0" layoutY="388.0" text="Issues" textFill="#1446bc">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="498.0" layoutY="388.0" text="Medications" textFill="#1446bc">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="619.0" layoutY="376.0" text="History Of" textFill="#1446bc">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="610.0" layoutY="387.0" text="Immunizations" textFill="#1446bc">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Label>
+      <Label layoutX="26.0" layoutY="229.0" text="Insurance" textFill="#1446bc">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="29.0" layoutY="387.0" text="Preferred Pharmacy" textFill="#1446bc">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="708.0" layoutY="530.0" mnemonicParsing="false" onAction="#save" prefHeight="33.0" prefWidth="58.0" style="-fx-background-color: teal; -fx-background-radius: 10;" text="Save" />
    </children>
 </AnchorPane>

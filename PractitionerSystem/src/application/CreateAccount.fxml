@@ -41,7 +41,7 @@
             </Button>
             <TextField fx:id="usernameField" disable="true" layoutX="297.0" layoutY="751.0" prefHeight="26.0" prefWidth="235.0" style="-fx-background-radius: 10px;" text="FirstName/LastName/MMYY/ID" />
             <Label layoutX="341.0" layoutY="723.0" text="Auto-Generated Username" textFill="#25328a" />
-            <Label layoutX="354.0" layoutY="786.0" text="This is your username" />
+            <Label layoutX="354.0" layoutY="786.0" text="This is your username/ID" />
             <Label layoutX="315.0" layoutY="803.0" text="Please save this for login purposes" />
             <Label layoutX="211.0" layoutY="348.0" text="First Name" />
             <Label layoutX="415.0" layoutY="348.0" text="Last Name" />

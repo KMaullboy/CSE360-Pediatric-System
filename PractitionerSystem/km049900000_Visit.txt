@@ -1,0 +1,22 @@
+kaleb
+maull
+06/06/97
+26
+03/24/24
+km049900000
+insurancename
+memberid
+groupnumber
+pharmacyname
+pharmacyaddress
+phonenumber
+5'6
+165
+99
+100
+no allergies
+no health concerns
+no notes
+no health issues
+no medications
+no immunizations
