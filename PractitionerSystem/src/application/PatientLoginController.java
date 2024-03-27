@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.security.auth.login.AccountException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,6 +53,8 @@ public class PatientLoginController implements Initializable
 	private Button login;
 	@FXML
 	private CheckBox rememberMe;
+	@FXML
+	private Label error;
 	
 	String username, password;
 	
@@ -88,6 +92,8 @@ public class PatientLoginController implements Initializable
 		}
 			//Once read, set the usernameField to the line that was just read
 			usernameField.setText(line);
+			
+		error.setVisible(false);
 
 	}
 	
@@ -99,8 +105,16 @@ public class PatientLoginController implements Initializable
 	public void login(ActionEvent event) throws IOException 
     {
 		//Get the username and password entered by the user
-		username = usernameField.getText().replaceAll("\n", "");
-		password = passwordField.getText().replaceAll("\n", "");
+		
+		try {
+			username = usernameField.getText().replaceAll("\n", "");
+			password = passwordField.getText().replaceAll("\n", "");
+		} catch (Exception e) 
+		{
+			error.setVisible(true);
+			error.setText("Enter username \n and password");
+			return;
+		}
 		
 		uname = username;
 		//System.out.println(username);
@@ -118,11 +132,13 @@ public class PatientLoginController implements Initializable
 		
 		try 
 		{
-			//Creates this file if it does not exist already
+			//If the username does not correspond to a file
 			if (!f.exists()) 
 			{
-	            // Create the directory along with any necessary parent directories
-	            System.out.println("File for username does not exist");
+	            //It means username or password is incorrect
+				error.setVisible(true);
+				error.setText("Username/password \n is incorrect");
+	            return;
 			}
 			else 
 			{
@@ -146,13 +162,17 @@ public class PatientLoginController implements Initializable
     					//System.out.println("Remember Me is not selected");
     					rememberUsername("");
     				}
+					
+					error.setVisible(false);
     				
     				//Log user into the PatientView page
     				switchtoPatientView(event);
     				return;
 				}
 				
-				System.out.println("password was wrong");
+				error.setVisible(true);
+				error.setText("Username/password \n is incorrect");
+				return;
 			}
 		}
 		catch (Exception e)

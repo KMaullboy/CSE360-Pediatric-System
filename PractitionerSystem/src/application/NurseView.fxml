@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="581.0" prefWidth="788.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NurseViewController">
+<AnchorPane prefHeight="581.0" prefWidth="812.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.NurseViewController">
    <children>
       <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#ebebeb" height="178.0" layoutX="16.0" layoutY="42.0" stroke="#00578d" strokeType="INSIDE" width="325.0" />
       <AnchorPane layoutX="-88.0" layoutY="-167.0" prefHeight="200.0" prefWidth="200.0">
@@ -192,5 +192,10 @@
          </font>
       </Label>
       <Button layoutX="708.0" layoutY="530.0" mnemonicParsing="false" onAction="#save" prefHeight="33.0" prefWidth="58.0" style="-fx-background-color: teal; -fx-background-radius: 10;" text="Save" />
+      <Label fx:id="error" layoutX="704.0" layoutY="445.0" text="Error Label" visible="false">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -47,6 +48,9 @@ public class NurseViewController {
 	public TextArea previousHealthIssuesField;
 	public TextArea previousPrescribedMedsField;
 	public TextArea historyField;
+	
+	@FXML 
+	private Label error;
 	
 	
 	String firstName, lastName, dateOfBirth, age, date, ID, insuranceName, memberID, groupNumber, 
@@ -93,7 +97,29 @@ public class NurseViewController {
     				&& !healthConcerns.equals("") && !notes.equals("") && !previousHealthIssues.equals("")
     				&& !previousPrescribedMeds.equals("") && !history.equals(""))
         	{
-        			
+    			try {
+        			Integer.parseInt(ageField.getText());
+        			Integer.parseInt(groupNumberField.getText());
+        			Integer.parseInt(pharmacyPhoneNumberField.getText());
+        			Integer.parseInt(heightField.getText());
+        			Integer.parseInt(weightField.getText());
+        			Integer.parseInt(bodyTemperatureField.getText());
+        			Integer.parseInt(bloodPressureField.getText());
+        		} catch (NumberFormatException e)
+        		{
+        			error.setVisible(true);
+        			error.setText("Only numbers for Age,\nGroup Number, Height,\nWeight, "
+        					+ "Body\nTemperature, Phone \nNumber and Blood \nPressure");
+        			return;
+        		}
+    			
+    			if (Integer.parseInt(age) < 0)
+    			{
+    				error.setVisible(true);
+        			error.setText("Invalid Age");
+        			return;
+    			}
+    			
             		String path1 = ID + "_Visit.txt";
             		String path2 = ID + "_PatientInfo.txt";
             		
@@ -105,7 +131,8 @@ public class NurseViewController {
         				
         				if (f.exists())
         				{
-        					System.out.println("Visit already created");
+        					error.setVisible(true);
+        					error.setText("Patient info has already \nbeen recorded");
         					return;
         				}
         				//Create this file
@@ -137,19 +164,22 @@ public class NurseViewController {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-
+        				
+        				error.setVisible(false);
         				return;
         				
         			}
         			
-        			//Means the file already exists
-        			System.out.println("Patient ID is not in system");
+        			//Means patient is not in the system
+        			error.setVisible(true);
+					error.setText("Invalid Patient \nID");
         			return;
         		
         	}
     		
     		//If program goes here, user has not filled in all boxes
-    		System.out.println("Not all boxes filled");
+    		error.setVisible(true);
+    		error.setText("Please Fill in \nall fields");
     		
     	} catch(Exception e) {
 			e.printStackTrace();
