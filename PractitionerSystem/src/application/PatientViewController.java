@@ -2,28 +2,154 @@ package application;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.Modality;
+
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.ChoiceBox;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class PatientViewController {
 	
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
+	String firstName, lastName, addressLine1, addressLine2, city, state, 
+    username, password, birthMonth, zipCode, birthYear;
 	BufferedReader br;
 	BufferedWriter bw;
 	
+	private class ViewInfo {
+	    public String firstName;
+	    public String lastName;
+	    public String dateOfBirth;
+	    public String age;
+	    public String date;
+	    public String ID;
+	    public String insuranceName;
+	    public String memberID;
+	    public String groupNumber;
+	    public String pharmacyName;
+	    public String pharmacyAddress;
+	    public String pharmacyPhoneNumber;
+	    public String height;
+	    public String weight;
+	    public String bodyTemperature;
+	    public String bloodPressure;
+	    public String allergies;
+	    public String healthConcerns;
+	    public String notes;
+	    public String previousHealthIssues;
+	    public String previousPrescribedMeds;
+	    public String history;
+	}
 	
+	/*
+	 * Using @FXML before declaring private fields allows them to be recognized
+	 * by SceneBuilder if you choose this controller class as the controller
+	 * for your fxml file
+	 */
+	
+    @FXML
+    private Label welcome;
+    @FXML
+    private Label initials;
+    @FXML
+    private ChoiceBox<String> dropdown;
+    
+    private SortedMap<String, ViewInfo> visits = new TreeMap<>();
+	
+    public void init(String name) throws IOException {
+        String filename = name + "_PatientInfo.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            firstName = reader.readLine();
+            lastName = reader.readLine();
+            addressLine1 = reader.readLine();
+            addressLine2 = reader.readLine();
+            city = reader.readLine();
+            state = reader.readLine();
+            zipCode = reader.readLine();
+            birthMonth = reader.readLine();
+            birthYear = reader.readLine();
+            username = reader.readLine();
+            password = reader.readLine();
+            reader.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace(); 
+        }
+        
+        filename = name + "_Visit.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                ViewInfo newInfo = new ViewInfo();
+                newInfo.firstName = line;
+                newInfo.lastName = reader.readLine();
+                newInfo.dateOfBirth = reader.readLine();
+                newInfo.age = reader.readLine();
+                newInfo.date = reader.readLine();
+                newInfo.ID = reader.readLine();
+                newInfo.insuranceName = reader.readLine();
+                newInfo.memberID = reader.readLine();
+                newInfo.groupNumber = reader.readLine();
+                newInfo.pharmacyName = reader.readLine();
+                newInfo.pharmacyAddress = reader.readLine();
+                newInfo.pharmacyPhoneNumber = reader.readLine();
+                newInfo.height = reader.readLine();
+                newInfo.weight = reader.readLine();
+                newInfo.bodyTemperature = reader.readLine();
+                newInfo.bloodPressure = reader.readLine();
+                newInfo.allergies = reader.readLine();
+                newInfo.healthConcerns = reader.readLine();
+                newInfo.notes = reader.readLine();
+                newInfo.previousHealthIssues = reader.readLine();
+                newInfo.previousPrescribedMeds = reader.readLine();
+                newInfo.history = reader.readLine();
+                
+                visits.put(newInfo.date, newInfo);
+            }
+            reader.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace(); 
+        }
+        
+        ObservableList<String> visitDates = FXCollections.observableArrayList(visits.keySet());
+        dropdown.setItems(visitDates);
+        
+        if (!visits.isEmpty()) {
+            dropdown.setValue(visits.lastKey());
+        }
+        
+        if (firstName != null && !firstName.isEmpty() && lastName != null && !lastName.isEmpty()) {
+            char firstCharFirstName = firstName.charAt(0);
+            char firstCharLastName = lastName.charAt(0);
+            initials.setText(String.valueOf(firstCharFirstName) + String.valueOf(firstCharLastName));
+        }
+        
+        welcome.setText("Welcome Back " + firstName + "!");
+    }
 	/*
 	 * switchtoPatientLogin() is called when the user clicks "Logout" button in the 
 	 * PatientView page. It switches the displayed page to PatientLogin.fxml
 	 */
+    		
 	
 	public void switchtoPatientLogin(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("PatientLogin.fxml"));
@@ -32,5 +158,15 @@ public class PatientViewController {
 		stage.setScene(scene);
 		stage.show();
 	}
+	
+	public void openSummaryPopup(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewSummaryPopup.fxml"));
+        Parent root2 = FXMLLoader.load(getClass().getResource("ViewSummaryPopup.fxml"));
+        Scene scene2 = new Scene(root2);
+        Stage stage2 = new Stage();
+        stage2.setScene(scene2);
 
+        stage2.initModality(Modality.APPLICATION_MODAL);
+        stage2.show();
+	}
 }

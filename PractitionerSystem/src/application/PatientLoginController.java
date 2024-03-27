@@ -36,7 +36,7 @@ public class PatientLoginController implements Initializable
 	private Parent root;
 	BufferedReader br;
 	BufferedWriter bw;
-	
+	private String uname;
 	/*
 	 * Using @FXML before declaring private fields allows them to be recognized
 	 * by SceneBuilder if you choose this controller class as the controller
@@ -102,6 +102,7 @@ public class PatientLoginController implements Initializable
 		username = usernameField.getText().replaceAll("\n", "");
 		password = passwordField.getText().replaceAll("\n", "");
 		
+		uname = username;
 		//System.out.println(username);
 		//System.out.println(password);
 		
@@ -210,7 +211,12 @@ public class PatientLoginController implements Initializable
 	 */
 	
 	public void switchtoPatientView(ActionEvent event) throws IOException {
-		root = FXMLLoader.load(getClass().getResource("PatientView.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("PatientView.fxml"));
+	    root = loader.load();
+
+	    PatientViewController patientViewController = loader.getController();
+	    patientViewController.init(uname); 
+	    
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);

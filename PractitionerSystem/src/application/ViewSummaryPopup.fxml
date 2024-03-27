@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="422.0" prefWidth="376.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PatientViewController">
+   <children>
+      <AnchorPane layoutX="-223.0" layoutY="-259.0" prefHeight="807.0" prefWidth="593.0">
+         <children>
+            <Label fx:id="welcome" layoutX="316.0" layoutY="267.0" prefHeight="50.0" prefWidth="196.0" text="Previous Visit Summary">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
