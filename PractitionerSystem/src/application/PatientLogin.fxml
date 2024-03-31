@@ -30,6 +30,11 @@
             <CheckBox fx:id="rememberMe" layoutX="431.0" layoutY="514.0" mnemonicParsing="false" text="Remember Me" />
             <Button layoutX="484.0" layoutY="554.0" mnemonicParsing="false" onAction="#switchtoCreateAccount" prefHeight="26.0" prefWidth="153.0" style="-fx-background-color: yellow; -fx-background-radius: 10;" text="Create Account" />
             <PasswordField fx:id="passwordField" layoutX="431.0" layoutY="429.0" prefHeight="26.0" prefWidth="250.0" style="-fx-background-radius: 10px;" />
+            <Label fx:id="error" layoutX="612.0" layoutY="473.0" text="Error Label">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
          </children></AnchorPane>
       <Button layoutX="326.0" layoutY="360.0" mnemonicParsing="false" onAction="#switchtoPractitionerLogin" style="-fx-background-color: orange; -fx-background-radius: 10;" text="Practitioner Login" />
       <Button fx:id="login" layoutX="329.0" layoutY="216.0" mnemonicParsing="false" onAction="#login" prefHeight="34.0" prefWidth="106.0" style="-fx-background-color: orange; -fx-background-radius: 10px;" text="Login" />

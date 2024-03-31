@@ -36,6 +36,11 @@
             </Label>
             <CheckBox fx:id="rememberMe" layoutX="431.0" layoutY="552.0" mnemonicParsing="false" text="Remember Me" />
             <PasswordField fx:id="passwordField" layoutX="431.0" layoutY="464.0" prefHeight="26.0" prefWidth="250.0" style="-fx-background-radius: 10px;" />
+            <Label fx:id="error" layoutX="612.0" layoutY="509.0" text="Error Label">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
          </children></AnchorPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="25.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">

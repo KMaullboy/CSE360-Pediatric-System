@@ -46,6 +46,8 @@ public class CreateAccountController implements Initializable{
 	private TextField firstNameField, lastNameField, addressLine1Field, addressLine2Field,
 					  cityField, stateField, zipCodeField, birthYearField, usernameField;
 	@FXML
+	private Label error1;
+	@FXML
 	private PasswordField passwordField;
     @FXML
     private Button submit, returnToLogin;
@@ -70,6 +72,8 @@ public class CreateAccountController implements Initializable{
     {
         	monthChoiceBox.getItems().addAll(months);
         	monthChoiceBox.setValue("01");
+        	error1.setVisible(false);
+        	
     }
     
     /*
@@ -88,8 +92,6 @@ public class CreateAccountController implements Initializable{
     		addressLine2 = addressLine2Field.getText();
     		city = cityField.getText();
     		state = stateField.getText();
-    		zipCode = Integer.parseInt(zipCodeField.getText());
-    		birthYear = Integer.parseInt(birthYearField.getText());
     		password = passwordField.getText();
     		month = monthChoiceBox.getValue();
     	
@@ -106,13 +108,35 @@ public class CreateAccountController implements Initializable{
     		if ( !firstNameField.getText().equals("") && !lastNameField.getText().equals("") &&
         			!addressLine1Field.getText().equals("") && !cityField.getText().equals("") &&
         			!stateField.getText().equals("") && !birthYearField.getText().equals("") && 
-        			!passwordField.getText().equals(""))
+        			!passwordField.getText().equals("") && !zipCodeField.getText().equals(""))
         	{
+    			try {
+        			zipCode = Integer.parseInt(zipCodeField.getText());
+            		birthYear = Integer.parseInt(birthYearField.getText());
+        		} catch (NumberFormatException e)
+        		{
+        			error1.setVisible(true);
+        			error1.setText("Only numbers for Zip Code \n and Birth Year");
+        			return;
+        		}
     			
-    			if (birthYear > currentYear) 
+    			//No one born before 1900 is alive
+    			if (birthYear > currentYear || birthYear < 1900) 
 	    		{
-	    			throw new Exception("Invalid Age");
+    				error1.setVisible(true);
+	    			error1.setText("Invalid Birth Year");
+	    			return;
+	    			
 	    		}
+    			
+    			if (zipCode < 0) 
+	    		{
+    				error1.setVisible(true);
+	    			error1.setText("Invalid Zip Code");
+	    			return;
+	    			
+	    		}
+    			
 				
         		//If not, save all the information in PatientID_PatientInfo.txt
         		
@@ -156,6 +180,8 @@ public class CreateAccountController implements Initializable{
 							bw = new BufferedWriter(new FileWriter(path));
 							bw.write(patientInformation);
             				bw.close();
+            				
+            				error1.setVisible(false);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -172,6 +198,12 @@ public class CreateAccountController implements Initializable{
         			ID++;
         		}
         	}
+    		//Error for not all text boxes filled
+    		error1.setText("Please fill out all fields \n indicated with *");
+    		error1.setVisible(true);
+    		return;
+    		
+    		
     	} catch(Exception e) {
 			e.printStackTrace();
 		}

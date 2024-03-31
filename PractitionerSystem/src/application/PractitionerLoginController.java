@@ -21,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
@@ -46,6 +47,8 @@ public class PractitionerLoginController implements Initializable{
 	private Button login;
 	@FXML
 	private CheckBox rememberMe;
+	@FXML
+	private Label error;
 	
 	String username, password;
 	
@@ -80,6 +83,8 @@ public class PractitionerLoginController implements Initializable{
 		}
 		
 			usernameField.setText(line);
+			
+			error.setVisible(false);
 
 	}
 	
@@ -91,8 +96,16 @@ public class PractitionerLoginController implements Initializable{
 	public void login(ActionEvent event) throws IOException 
     {
 		//Get the username and password entered by the user
-		username = usernameField.getText();
-		password = passwordField.getText();
+		
+		try {
+			username = usernameField.getText().replaceAll("\n", "");
+			password = passwordField.getText().replaceAll("\n", "");
+		} catch (Exception e) 
+		{
+			error.setVisible(true);
+			error.setText("Enter username \n and password");
+			return;
+		}
 		
 		//System.out.println(username);
 		//System.out.println(password);
@@ -149,6 +162,8 @@ public class PractitionerLoginController implements Initializable{
 	    			{
 	    				//System.out.println("Login Authenticated");
 	    				
+	    				error.setVisible(false);
+	    				
 	    				if (rememberMe.isSelected()) //Remember the username 
 	    				{
 	    					//System.out.println("Remember Me is selected");
@@ -169,8 +184,11 @@ public class PractitionerLoginController implements Initializable{
 	    				}
 	    				return;
 	    			}
+	    			
+	    			error.setVisible(true);
+	    			error.setText("Username/Password \n is incorrect");
+	    			return;
 	    		}
-	    		throw new Exception("Username or Password is incorrect");
 	    		
 			}
 		}
