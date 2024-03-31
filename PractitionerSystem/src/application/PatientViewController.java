@@ -34,31 +34,6 @@ public class PatientViewController {
 	BufferedReader br;
 	BufferedWriter bw;
 	
-	private class ViewInfo {
-	    public String firstName;
-	    public String lastName;
-	    public String dateOfBirth;
-	    public String age;
-	    public String date;
-	    public String ID;
-	    public String insuranceName;
-	    public String memberID;
-	    public String groupNumber;
-	    public String pharmacyName;
-	    public String pharmacyAddress;
-	    public String pharmacyPhoneNumber;
-	    public String height;
-	    public String weight;
-	    public String bodyTemperature;
-	    public String bloodPressure;
-	    public String allergies;
-	    public String healthConcerns;
-	    public String notes;
-	    public String previousHealthIssues;
-	    public String previousPrescribedMeds;
-	    public String history;
-	}
-	
 	/*
 	 * Using @FXML before declaring private fields allows them to be recognized
 	 * by SceneBuilder if you choose this controller class as the controller
@@ -71,6 +46,8 @@ public class PatientViewController {
     private Label initials;
     @FXML
     private ChoiceBox<String> dropdown;
+    @FXML
+    private Label date;
     
     private SortedMap<String, ViewInfo> visits = new TreeMap<>();
 	
@@ -160,13 +137,22 @@ public class PatientViewController {
 	}
 	
 	public void openSummaryPopup(ActionEvent event) throws IOException {
+		String selectedDate = dropdown.getValue();
+		if (selectedDate == null) {
+			return;
+		}
+		ViewInfo viewInfo = visits.get(selectedDate);
+		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("ViewSummaryPopup.fxml"));
-        Parent root2 = FXMLLoader.load(getClass().getResource("ViewSummaryPopup.fxml"));
+        Parent root2 = loader.load();
         Scene scene2 = new Scene(root2);
         Stage stage2 = new Stage();
         stage2.setScene(scene2);
-
         stage2.initModality(Modality.APPLICATION_MODAL);
+        
+	    ViewSummaryPopupController control = loader.getController();
+	    control.init(selectedDate, viewInfo); 
+        
         stage2.show();
 	}
 }
