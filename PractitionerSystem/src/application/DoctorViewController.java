@@ -86,6 +86,7 @@ public class DoctorViewController {
 				    + prescriptionCommentsField.getText();
 
 		}
+		catch (Exception e) {}
 	}
 	
 	// Shows prescription fields when "Add New Prescription" button is pressed
