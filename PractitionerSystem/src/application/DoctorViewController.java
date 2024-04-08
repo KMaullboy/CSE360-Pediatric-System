@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.FileReader;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,14 +17,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.scene.paint.Color;
 
 public class DoctorViewController {
 
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-	BufferedReader br;
-	BufferedWriter bw;
 	
 	public TextField firstNameField;
 	public TextField lastNameField;
@@ -54,57 +54,179 @@ public class DoctorViewController {
 	public TextArea previousPrescribedMedsField;
 	public TextArea historyOfImmunizationsField;
 	
+	@FXML
+	private Button loadPatientInfoButton;
+	
+	@FXML
+	private Button savePatientInfoButton;
+	
+	@FXML
+	private Button sendPrescriptionButton; 
+	
 	@FXML 
 	private Label error;
 	
-	public void save(ActionEvent event) throws IOException {
-		
-		try {
-			
-			String patientInformation = firstNameField.getText() + "\n" 
-				    + lastNameField.getText() + "\n" 
-				    + dateOfBirthField.getText() + "\n" 
-				    + ageField.getText() + "\n" 
-				    + dateField.getText() + "\n" 
-				    + IDField.getText() + "\n" 
-				    + heightField.getText() + "\n" 
-				    + weightField.getText() + "\n" 
-				    + bodyTemperatureField.getText() + "\n" 
-				    + bloodPressureField.getText() + "\n" 
-				    + allergiesField.getText() + "\n" 
-				    + healthConcernsField.getText() + "\n" 
-				    + notesField.getText() + "\n" 
-				    + previousHealthIssuesField.getText() + "\n" 
-				    + previousPrescribedMedsField.getText() + "\n" 
-				    + historyOfImmunizationsField.getText() + "\n"
-				    + physicalTestFindingsField.getText() + "\n" 
-				    + recommendationsField.getText() + "\n"
-				    + medicationField.getText() + "\n"
-				    + prescribedByField.getText() + "\n"
-				    + qtyDurationField.getText() + "\n"
-				    + refillsField.getText() + "\n"
-				    + prescriptionCommentsField.getText();
+	// Identifies Error & Success messages
+	 private void showError(String message) {
+		 
+	        error.setTextFill(Color.RED);
+	        error.setText(message);
+	        error.setVisible(true);
+	    }
 
-		}
-		catch (Exception e) {}
+	    private void showSuccess(String message) {
+	    	
+	        error.setTextFill(Color.GREEN);
+	        error.setText(message);
+	        error.setVisible(true);
+	    }
+	
+	// Loads patient info using patient ID
+	@FXML
+	private void loadPatientInfo(ActionEvent event) {
+		
+	    String patientID = IDField.getText();
+	    File file = new File(patientID + "_PatientInfo.txt");
+	    
+	    if (file.exists()) {
+	    	
+	        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+	        	
+	            firstNameField.setText(reader.readLine());
+	            lastNameField.setText(reader.readLine());
+	            dateOfBirthField.setText(reader.readLine());
+	            ageField.setText(reader.readLine());
+	            dateField.setText(reader.readLine());
+	            // IDField is already set
+	            heightField.setText(reader.readLine());
+	            weightField.setText(reader.readLine());
+	            bodyTemperatureField.setText(reader.readLine());
+	            bloodPressureField.setText(reader.readLine());
+	            allergiesField.setText(reader.readLine());
+	            healthConcernsField.setText(reader.readLine());
+	            notesField.setText(reader.readLine());
+	            previousHealthIssuesField.setText(reader.readLine());
+	            previousPrescribedMedsField.setText(reader.readLine());
+	            historyOfImmunizationsField.setText(reader.readLine());
+	            physicalTestFindingsField.setText(reader.readLine());
+	            recommendationsField.setText(reader.readLine());
+	        } catch (IOException e) {
+	        	
+	            showError("Failed to load patient information.");
+	        }
+	    } else {
+	    	
+	        showError("Patient information not found for ID: " + patientID);
+	    }
+	}
+	
+	// Saves changes to the patient's text file record
+	@FXML
+	public void save(ActionEvent event) {
+		
+		String patientID = IDField.getText();
+	    if (patientID.isEmpty()) {
+	        showError("Patient ID is required.");
+	        return;
+	    }
+	    
+	    File file = new File(patientID + "_PatientInfo.txt");
+		
+	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+	    	
+	        writer.write(firstNameField.getText() + "\n");
+	        writer.write(lastNameField.getText() + "\n");
+	        writer.write(dateOfBirthField.getText() + "\n");
+	        writer.write(ageField.getText() + "\n");
+	        writer.write(dateField.getText() + "\n");
+	        writer.write(IDField.getText() + "\n");
+	        writer.write(heightField.getText() + "\n");
+	        writer.write(weightField.getText() + "\n");
+	        writer.write(bodyTemperatureField.getText() + "\n");
+	        writer.write(bloodPressureField.getText() + "\n");
+	        writer.write(allergiesField.getText() + "\n");
+	        writer.write(healthConcernsField.getText() + "\n");
+	        writer.write(notesField.getText() + "\n");
+	        writer.write(previousHealthIssuesField.getText() + "\n");
+	        writer.write(previousPrescribedMedsField.getText() + "\n");
+	        writer.write(historyOfImmunizationsField.getText() + "\n");
+	        writer.write(physicalTestFindingsField.getText() + "\n");
+	        writer.write(recommendationsField.getText() + "\n");
+	        // Append prescription information only if new or updated
+	        writer.write(medicationField.getText() + "\n");
+	        writer.write(prescribedByField.getText() + "\n");
+	        writer.write(qtyDurationField.getText() + "\n");
+	        writer.write(refillsField.getText() + "\n");
+	        writer.write(prescriptionCommentsField.getText());
+	        
+	        showSuccess("Information saved successfully.");        
+	    } catch (IOException e) {
+	    	
+	        showError("Failed to save patient information.");
+	    }
+	}
+	
+	// Initially hides prescription fields until "Add New Prescription" button is pressed
+		 @FXML
+		    public void initialize() {
+			 
+		        medicationField.setVisible(false);
+		        prescribedByField.setVisible(false);
+		        qtyDurationField.setVisible(false);
+		        refillsField.setVisible(false);
+		        prescriptionCommentsField.setVisible(false);
+		    }
 	}
 	
 	// Shows prescription fields when "Add New Prescription" button is pressed
 	 @FXML
 	    private void showPrescriptionFields(ActionEvent event) {
+		 
 	        medicationField.setVisible(true);
 	        prescribedByField.setVisible(true);
 	        qtyDurationField.setVisible(true);
 	        refillsField.setVisible(true);
 	        prescriptionCommentsField.setVisible(true);
 	    }
+	 
+	 /* When the "Send" button is pressed in the prescription section,
+	  * the changes to the prescription fields are saved in the patient's
+	  * text file record
+	  */
+	 @FXML
+	 private void sendPrescription(ActionEvent event) {
+		 
+	     String patientID = IDField.getText();
+	     if (patientID.isEmpty()) {
+	         showError("Patient ID is required for sending a prescription.");
+	         return;
+	     }
+	     
+	     File file = new File(patientID + "_PatientInfo.txt");
+	     
+	     // Append the prescription information to the file
+	     try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) { // true for appending
+	        
+	         if (!file.exists() || file.length() == 0) {
+	             writer.write("\nPrescriptions:\n");
+	         }
+	         writer.write("\nMedication: " + medicationField.getText());
+	         writer.write("\nPrescribed By: " + prescribedByField.getText());
+	         writer.write("\nQuantity/Duration: " + qtyDurationField.getText());
+	         writer.write("\nRefills: " + refillsField.getText());
+	         writer.write("\nComments: " + prescriptionCommentsField.getText() + "\n");
+	         
+	         showSuccess("Prescription sent successfully.");
+	     } catch (IOException e) {
+	    	 
+	         showError("Failed to send prescription.");
+	     }
+	 }
+
 	
-	/*
-	 * switchtoPractitionerLogin() is called when the user clicks "Logout" in the 
-	 * DoctorView page. It switches the displayed page to PractitionerLogin.fxml
-	 */
-	
+	// When user clicks "logout" in DoctorView, they are redirected to the Practitioner Login page
 	public void switchtoPractitionerLogin(ActionEvent event) throws IOException {
+		
 		root = FXMLLoader.load(getClass().getResource("PractitionerLogin.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -112,15 +234,3 @@ public class DoctorViewController {
 		stage.show();
 	}
 	
-	 @FXML
-	    public void initialize() {
-	        // Initially hide the prescription fields if they should not be visible from the start
-	        medicationField.setVisible(false);
-	        prescribedByField.setVisible(false);
-	        qtyDurationField.setVisible(false);
-	        refillsField.setVisible(false);
-	        prescriptionCommentsField.setVisible(false);
-
-	        // Initialize any other UI components as needed
-	    }
-}
