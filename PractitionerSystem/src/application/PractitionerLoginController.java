@@ -185,10 +185,11 @@ public class PractitionerLoginController implements Initializable{
 	    				return;
 	    			}
 	    			
-	    			error.setVisible(true);
-	    			error.setText("Username/Password \n is incorrect");
-	    			return;
+	    			
 	    		}
+	    		error.setVisible(true);
+    			error.setText("Username/Password \n is incorrect");
+    			return;
 	    		
 			}
 		}
