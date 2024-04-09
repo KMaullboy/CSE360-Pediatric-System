@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ChangeContactController">
+   <children>
+      <AnchorPane layoutX="-136.0" layoutY="-222.0" prefHeight="710.0" prefWidth="682.0" style="-fx-background-color: aliceblue;">
+         <children>
+            <Button fx:id="submitButton" layoutX="358.0" layoutY="564.0" mnemonicParsing="false" onAction="#saveContactInfo" prefHeight="34.0" prefWidth="121.0" style="-fx-background-radius: 10px; -fx-background-color: orange;" text="Submit">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Label alignment="CENTER" layoutX="286.0" layoutY="275.0" prefHeight="26.0" prefWidth="252.0" text="Change Contact Information">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="addressLine1Field" layoutX="212.0" layoutY="330.0" prefHeight="26.0" prefWidth="399.0" style="-fx-background-radius: 10px;" />
+            <TextField fx:id="addressLine2Field" layoutX="212.0" layoutY="375.0" prefHeight="26.0" prefWidth="399.0" style="-fx-background-radius: 10px;" />
+            <TextField fx:id="cityField" layoutX="212.0" layoutY="418.0" prefHeight="26.0" prefWidth="399.0" style="-fx-background-radius: 10px;" />
+            <TextField fx:id="stateField" layoutX="212.0" layoutY="461.0" prefHeight="26.0" prefWidth="399.0" style="-fx-background-radius: 10px;" />
+            <TextField fx:id="zipCodeField" layoutX="212.0" layoutY="510.0" prefHeight="26.0" prefWidth="130.0" style="-fx-background-radius: 10px;" />
+            <Button fx:id="returnButton" layoutX="333.0" layoutY="617.0" mnemonicParsing="false" onAction="#switchtoPatientView" prefHeight="34.0" prefWidth="171.0" style="-fx-background-color: teal; -fx-background-radius: 10px;" text="Return To Login" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <Label layoutX="212.0" layoutY="493.0" text="Zip Code*" />
+            <Label layoutX="215.0" layoutY="444.0" text="State*" />
+            <Label fx:id="IDField" layoutX="214.0" layoutY="313.0" text="Address Line 1*" />
+            <Label layoutX="215.0" layoutY="356.0" text="Address Line 2" />
+            <Label layoutX="218.0" layoutY="401.0" text="City*" />
+            <Label text="Label" />
+            <Label fx:id="error1" layoutX="214.0" layoutY="536.0" text="Please Fill In all fields indicated with  *">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
+            <Label fx:id="successLabel" layoutX="401.0" layoutY="535.0" prefHeight="17.0" prefWidth="252.0">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

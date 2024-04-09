@@ -21,6 +21,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.SortedMap;
 import java.util.TreeMap;
+
+import application.ChangeContactController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -154,5 +156,14 @@ public class PatientViewController {
 	    control.init(selectedDate, viewInfo); 
         
         stage2.show();
+	}
+	@FXML
+	public void changeContactInfo(ActionEvent event) throws IOException {
+	    Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+	    FXMLLoader loader = new FXMLLoader(getClass().getResource("ChangeContact.fxml")); 
+	    Parent root = loader.load();
+	    ChangeContactController controller = loader.getController();
+	    controller.initData(username);
+	    stage.getScene().setRoot(root);
 	}
 }

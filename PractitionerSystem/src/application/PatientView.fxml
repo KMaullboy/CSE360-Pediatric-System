@@ -45,7 +45,7 @@
             <Button layoutX="553.0" layoutY="490.0" mnemonicParsing="false" text="Send Message" />
             <Button layoutX="326.0" layoutY="529.0" mnemonicParsing="false" onAction="#openSummaryPopup" text="View Summary" />
             <Circle fill="#185374" layoutX="732.0" layoutY="322.0" radius="25.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-            <Button layoutX="666.0" layoutY="355.0" mnemonicParsing="false" text="Change Contact Info" />
+            <Button layoutX="666.0" layoutY="355.0" mnemonicParsing="false" onAction="#changeContactInfo" text="Change Contact Info" />
             <Label layoutX="648.0" layoutY="392.0" prefHeight="50.0" prefWidth="76.0" text="Messages">
                <font>
                   <Font name="System Bold" size="12.0" />
