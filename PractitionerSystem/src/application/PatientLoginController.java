@@ -39,6 +39,7 @@ public class PatientLoginController implements Initializable
 	BufferedReader br;
 	BufferedWriter bw;
 	private String uname;
+	public static String patientUsername;
 	/*
 	 * Using @FXML before declaring private fields allows them to be recognized
 	 * by SceneBuilder if you choose this controller class as the controller
@@ -166,6 +167,7 @@ public class PatientLoginController implements Initializable
 					error.setVisible(false);
     				
     				//Log user into the PatientView page
+					patientUsername = username;
     				switchtoPatientView(event);
     				return;
 				}

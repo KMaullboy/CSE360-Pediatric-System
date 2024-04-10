@@ -166,4 +166,36 @@ public class PatientViewController {
 	    controller.initData(username);
 	    stage.getScene().setRoot(root);
 	}
+
+	
+	@FXML
+	public void sendMessageAction(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("PatientMessages.fxml"));
+        Parent root = loader.load();
+        // Create a new stage for the pop-up
+        Stage popupStage = new Stage();
+        popupStage.initModality(Modality.APPLICATION_MODAL); // Use Modality.WINDOW_MODAL for blocking only the parent window
+        popupStage.setTitle("Pop-up Window");
+        
+        // Set the scene and show the stage
+        popupStage.setScene(new Scene(root));
+        popupStage.showAndWait(); // Show and wait until the pop-up is closed
+	}
+	
+	@FXML
+	public void openReceivedMessagesAction(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ReceivedPatientMessages.fxml"));
+        Parent root = loader.load();
+        // Create a new stage for the pop-up
+        Stage popupStage = new Stage();
+        popupStage.initModality(Modality.APPLICATION_MODAL); // Use Modality.WINDOW_MODAL for blocking only the parent window
+        popupStage.setTitle("Pop-up Window");
+        
+        // Set the scene and show the stage
+        popupStage.setScene(new Scene(root));
+        popupStage.showAndWait(); // Show and wait until the pop-up is closed
+	}
+	
+	
+	
 }

@@ -204,23 +204,9 @@ public class NurseViewController {
 			br = new BufferedReader(new FileReader(path2));
 			
 			try {
-			
-			//Read in the previous visit information
-			firstNameField.setText(br.readLine());
-    		lastNameField.setText(br.readLine());
-    		dateOfBirthField.setText(br.readLine());
-    		ageField.setText(br.readLine());
-    		dateField.setText(br.readLine());
-    		br.readLine();
-    		insuranceNameField.setText(br.readLine());
-    		memberIDField.setText(br.readLine());
-    		groupNumberField.setText(br.readLine());
-    		pharmacyNameField.setText(br.readLine());
-    		pharmacyAddressField.setText(br.readLine());
-    		pharmacyPhoneNumberField.setText(br.readLine());
     		
     		//Read over the lines that we do not need
-    		for (int i = 0; i < 7; i++)
+    		for (int i = 0; i < 19; i++)
     		{
     			br.readLine();
     		}
@@ -243,6 +229,16 @@ public class NurseViewController {
 	
 	public void switchtoPractitionerLogin(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("PractitionerLogin.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	
+	@FXML
+	public void viewMessages(ActionEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("PractitionerMessages.fxml"));
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);

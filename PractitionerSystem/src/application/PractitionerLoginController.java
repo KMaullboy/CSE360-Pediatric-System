@@ -30,6 +30,7 @@ public class PractitionerLoginController implements Initializable{
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
+	public static Boolean doctor;
 	BufferedReader br;
 	BufferedWriter bw;
 	
@@ -178,9 +179,11 @@ public class PractitionerLoginController implements Initializable{
 	    				if (info[2].equals("Nurse")) //If the username and password has Nurse Privileges
 	    				{
 	    					switchtoNurseView(event); //Log user into the NurseView page
+	    					doctor = false;
 	    				} else //If the username and password has Doctor Privileges
 	    				{
 	    					switchtoDoctorView(event); //Log user into the DoctorView page
+	    					doctor = true;
 	    				}
 	    				return;
 	    			}

@@ -244,5 +244,16 @@ public class DoctorViewController {
 		stage.setScene(scene);
 		stage.show();
 	}
+	
+	@FXML
+	public void viewMessages(ActionEvent event) throws IOException {
+		root = FXMLLoader.load(getClass().getResource("PractitionerMessages.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
+	
 }
 	
