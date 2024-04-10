@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CreateAccountController">
+   <children>
+      <AnchorPane layoutX="-136.0" layoutY="-222.0" prefHeight="878.0" prefWidth="682.0" style="-fx-background-color: aliceblue;">
+         <children>
+            <TextField fx:id="firstNameField" layoutX="209.0" layoutY="365.0" prefHeight="26.0" prefWidth="195.0" style="-fx-background-radius: 10px;" />
+            <Button fx:id="submit" layoutX="366.0" layoutY="681.0" mnemonicParsing="false" onAction="#submit" prefHeight="26.0" prefWidth="95.0" style="-fx-background-radius: 10px; -fx-background-color: orange;" text="Submit" />
+            <Label alignment="CENTER" layoutX="316.0" layoutY="304.0" prefHeight="26.0" prefWidth="195.0" text="Create A New Account">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="lastNameField" layoutX="414.0" layoutY="365.0" prefHeight="26.0" prefWidth="195.0" style="-fx-background-radius: 10px;" />
+            <TextField fx:id="addressLine1Field" layoutX="209.0" layoutY="422.0" prefHeight="26.0" prefWidth="399.0" style="-fx-background-radius: 10px;" />
+            <TextField fx:id="addressLine2Field" layoutX="209.0" layoutY="472.0" prefHeight="26.0" prefWidth="399.0" style="-fx-background-radius: 10px;" />
+            <TextField fx:id="cityField" layoutX="209.0" layoutY="529.0" prefHeight="26.0" prefWidth="130.0" style="-fx-background-radius: 10px;" />
+            <TextField fx:id="stateField" layoutX="350.0" layoutY="529.0" prefHeight="26.0" prefWidth="108.0" style="-fx-background-radius: 10px;" />
+            <TextField fx:id="zipCodeField" layoutX="478.0" layoutY="529.0" prefHeight="26.0" prefWidth="130.0" style="-fx-background-radius: 10px;" />
+            <ChoiceBox fx:id="monthChoiceBox" layoutX="254.0" layoutY="582.0" prefWidth="150.0" />
+            <ImageView fitHeight="88.0" fitWidth="121.0" layoutX="354.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../var/folders/kz/n7kqqvf97nj00zxdtld9lwsh0000gp/T/TemporaryItems/NSIRD_screencaptureui_ghG9H4/Screenshot%202024-02-25%20at%205.38.08%E2%80%AFPM.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="birthYearField" layoutX="414.0" layoutY="582.0" prefHeight="26.0" prefWidth="150.0" style="-fx-background-radius: 10px;" />
+            <Button fx:id="returnToLogin" layoutX="339.0" layoutY="828.0" mnemonicParsing="false" onAction="#switchtoPatientLogin" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: teal; -fx-background-radius: 10px;" text="Return To Login" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <TextField fx:id="usernameField" disable="true" layoutX="297.0" layoutY="751.0" prefHeight="26.0" prefWidth="235.0" style="-fx-background-radius: 10px;" text="FirstName/LastName/MMYY/ID" />
+            <Label layoutX="341.0" layoutY="723.0" text="Auto-Generated Username" textFill="#25328a" />
+            <Label layoutX="354.0" layoutY="786.0" text="This is your username/ID" />
+            <Label layoutX="315.0" layoutY="803.0" text="Please save this for login purposes" />
+            <Label layoutX="211.0" layoutY="348.0" text="First Name*" />
+            <Label layoutX="415.0" layoutY="348.0" text="Last Name*" />
+            <Label layoutX="478.0" layoutY="512.0" text="Zip Code*" />
+            <Label layoutX="415.0" layoutY="565.0" text="Birth Year*" />
+            <Label layoutX="254.0" layoutY="565.0" text="Birth Month*" />
+            <Label layoutX="356.0" layoutY="621.0" text="Create a Password:*" />
+            <Label layoutX="351.0" layoutY="512.0" text="State*" />
+            <Label fx:id="IDField" layoutX="211.0" layoutY="405.0" text="Address Line 1*" />
+            <Label layoutX="211.0" layoutY="455.0" text="Address Line 2" />
+            <Label layoutX="211.0" layoutY="512.0" text="City*" />
+            <PasswordField fx:id="passwordField" layoutX="301.0" layoutY="646.0" prefHeight="26.0" prefWidth="215.0" style="-fx-background-radius: 10px;" />
+            <Label text="Label" />
+            <Label fx:id="error1" layoutX="474.0" layoutY="686.0" text="Please Fill In all fields indicated with  *">
+               <font>
+                  <Font size="11.0" />
+               </font></Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
