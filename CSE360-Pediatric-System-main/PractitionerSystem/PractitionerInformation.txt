@@ -1,3 +1,0 @@
-myusername|mypassword|Nurse|
-yourusername|yourpassword|Nurse|
-user|pass|Doctor|

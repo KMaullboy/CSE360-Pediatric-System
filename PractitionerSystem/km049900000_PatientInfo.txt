@@ -1,11 +1,11 @@
 kaleb
 maull
-addr3ess1
+address1
 address2
-city2
-state
-20345
+mycity
+mystate
+12345
 04
 1999
 km049900000
-pass
+mypassword

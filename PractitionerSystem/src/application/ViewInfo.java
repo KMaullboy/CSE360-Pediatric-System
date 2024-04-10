@@ -7,12 +7,6 @@ public class ViewInfo {
     public String age;
 	public String date;
 	public String ID;
-	public String insuranceName;
-	public String memberID;
-	public String groupNumber;
-	public String pharmacyName;
-	public String pharmacyAddress;
-	public String pharmacyPhoneNumber;
 	public String height;
 	public String weight;
 	public String bodyTemperature;

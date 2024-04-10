@@ -84,12 +84,6 @@ public class PatientViewController {
                 newInfo.age = reader.readLine();
                 newInfo.date = reader.readLine();
                 newInfo.ID = reader.readLine();
-                newInfo.insuranceName = reader.readLine();
-                newInfo.memberID = reader.readLine();
-                newInfo.groupNumber = reader.readLine();
-                newInfo.pharmacyName = reader.readLine();
-                newInfo.pharmacyAddress = reader.readLine();
-                newInfo.pharmacyPhoneNumber = reader.readLine();
                 newInfo.height = reader.readLine();
                 newInfo.weight = reader.readLine();
                 newInfo.bodyTemperature = reader.readLine();

@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -11,25 +10,14 @@
    <children>
       <AnchorPane layoutX="-223.0" layoutY="-259.0" prefHeight="807.0" prefWidth="593.0">
          <children>
-            <Line endX="568.0" endY="363.9595642089844" layoutX="4.0" layoutY="-5.0" startX="243.9595489501953" startY="363.9595642089844" />
-            <Label layoutX="316.0" layoutY="267.0" prefHeight="50.0" prefWidth="196.0" text="Previous Visit Summary" textFill="#44559f">
+            <Label layoutX="316.0" layoutY="279.0" prefHeight="50.0" prefWidth="196.0" text="Previous Visit Summary" textFill="#44559f">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="date" layoutX="376.0" layoutY="307.0" text="MM/DD/YYYY" textAlignment="CENTER">
+            <Label fx:id="date" layoutX="376.0" layoutY="322.0" text="MM/DD/YYYY" textAlignment="CENTER">
                <font>
                   <Font size="10.0" />
-               </font>
-            </Label>
-            <Label fx:id="doctor" layoutX="254.0" layoutY="322.0" prefHeight="50.0" prefWidth="169.0" text="Doctor:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <Label fx:id="nurse" layoutX="430.0" layoutY="322.0" prefHeight="50.0" prefWidth="145.0" text="Nurse:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
                </font>
             </Label>
             <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#f0f1f1" height="66.0" layoutX="254.0" layoutY="372.0" stroke="#44559f" strokeType="INSIDE" width="309.0" />
@@ -100,17 +88,17 @@
                   <Font name="System Bold" size="6.0" />
                </font>
             </Label>
-            <TextArea fx:id="findings" layoutX="268.0" layoutY="476.0" prefHeight="50.0" prefWidth="253.0" editable="false">
+            <TextArea fx:id="findings" editable="false" layoutX="268.0" layoutY="476.0" prefHeight="50.0" prefWidth="253.0">
                <font>
                   <Font size="9.0" />
                </font>
             </TextArea>
-            <TextArea fx:id="notes" layoutX="269.0" layoutY="580.0" prefHeight="50.0" prefWidth="253.0" editable="false">
+            <TextArea fx:id="notes" editable="false" layoutX="269.0" layoutY="580.0" prefHeight="50.0" prefWidth="253.0">
                <font>
                   <Font size="9.0" />
                </font>
             </TextArea>
-            <TextArea fx:id="meds" layoutX="269.0" layoutY="685.0" prefHeight="50.0" prefWidth="253.0" editable="false">
+            <TextArea fx:id="meds" editable="false" layoutX="269.0" layoutY="685.0" prefHeight="50.0" prefWidth="253.0">
                <font>
                   <Font size="9.0" />
                </font>
