@@ -67,6 +67,8 @@ public class DoctorViewController {
 	@FXML 
 	private Label error;
 	
+	public String insuranceName, memberID, groupNumber, pharmacyName, pharmacyAddress, pharmacyPhoneNumber;
+	
 	// Identifies Error & Success messages
 	 private void showError(String message) {
 		 
@@ -101,12 +103,12 @@ public class DoctorViewController {
 	            ageField.setText(reader.readLine());
 	            dateField.setText(reader.readLine());
 	            reader.readLine();// IDField is already set
-	            reader.readLine();//Insurance Name
-	            reader.readLine();//Insurance ID
-	            reader.readLine();//Group Number
-	            reader.readLine();//PharmacyName
-	            reader.readLine();//PharmacyAddress
-	            reader.readLine();//Pharmacy Number
+	            insuranceName = reader.readLine();//Insurance Name
+	            memberID = reader.readLine();//Insurance ID
+	            groupNumber = reader.readLine();//Group Number
+	            pharmacyName = reader.readLine();//PharmacyName
+	            pharmacyAddress = reader.readLine();//PharmacyAddress
+	            pharmacyPhoneNumber = reader.readLine();//Pharmacy Number
 	            heightField.setText(reader.readLine());
 	            weightField.setText(reader.readLine());
 	            bodyTemperatureField.setText(reader.readLine());
@@ -151,6 +153,16 @@ public class DoctorViewController {
 	        writer.write(ageField.getText() + "\n");
 	        writer.write(dateField.getText() + "\n");
 	        writer.write(IDField.getText() + "\n");
+	        
+	        //I Added these - Kaleb
+	        writer.write(insuranceName + "\n");
+	        writer.write(memberID + "\n");
+	        writer.write(groupNumber + "\n");
+	        writer.write(pharmacyName + "\n");
+	        writer.write(pharmacyAddress + "\n");
+	        writer.write(pharmacyPhoneNumber + "\n");
+	        /////////////////////////////////////////
+	        
 	        writer.write(heightField.getText() + "\n");
 	        writer.write(weightField.getText() + "\n");
 	        writer.write(bodyTemperatureField.getText() + "\n");

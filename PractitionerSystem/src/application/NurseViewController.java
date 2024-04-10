@@ -132,9 +132,8 @@ public class NurseViewController {
         				
         				if (f.exists())
         				{
-        					error.setVisible(true);
-        					error.setText("Patient info has already \nbeen recorded");
-        					return;
+        					//Overwrite this file
+        					f.delete();
         				}
         				//Create this file
         				try {

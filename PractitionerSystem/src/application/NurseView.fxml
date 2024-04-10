@@ -161,12 +161,12 @@
             <Font name="System Bold" size="11.0" />
          </font>
       </Label>
-      <Label layoutX="385.0" layoutY="388.0" text="Issues" textFill="#1446bc">
+      <Label layoutX="385.0" layoutY="406.0" text="Issues" textFill="#1446bc">
          <font>
             <Font name="System Bold" size="11.0" />
          </font>
       </Label>
-      <Label layoutX="498.0" layoutY="388.0" text="Medications" textFill="#1446bc">
+      <Label layoutX="498.0" layoutY="405.0" text="Medications" textFill="#1446bc">
          <font>
             <Font name="System Bold" size="11.0" />
          </font>
@@ -176,7 +176,7 @@
             <Font name="System Bold" size="11.0" />
          </font>
       </Label>
-      <Label layoutX="610.0" layoutY="387.0" text="Immunizations" textFill="#1446bc">
+      <Label layoutX="610.0" layoutY="404.0" text="Immunizations" textFill="#1446bc">
          <font>
             <Font name="System Bold" size="11.0" />
          </font>
