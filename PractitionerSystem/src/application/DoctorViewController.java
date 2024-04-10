@@ -225,7 +225,7 @@ public class DoctorViewController {
 	         return;
 	     }
 	     
-	     File file = new File(patientID + "_PatientInfo.txt");
+	     File file = new File(patientID + "_Visit.txt");
 	     
 	     // Append the prescription information to the file
 	     try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) { // true for appending

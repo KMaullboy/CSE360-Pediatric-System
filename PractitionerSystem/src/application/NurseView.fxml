@@ -111,12 +111,12 @@
             <Font size="11.0" />
          </font>
       </Label>
-      <Label layoutX="357.0" layoutY="67.0" text="Height">
+      <Label layoutX="357.0" layoutY="67.0" text="Height (cm)">
          <font>
             <Font size="11.0" />
          </font>
       </Label>
-      <Label layoutX="441.0" layoutY="67.0" text="Weight">
+      <Label layoutX="441.0" layoutY="67.0" text="Weight (kg)">
          <font>
             <Font size="11.0" />
          </font>
@@ -126,7 +126,7 @@
             <Font size="11.0" />
          </font>
       </Label>
-      <Label layoutX="521.0" layoutY="67.0" text="Body Temp">
+      <Label layoutX="521.0" layoutY="67.0" text="Body Temp (F)">
          <font>
             <Font size="11.0" />
          </font>
