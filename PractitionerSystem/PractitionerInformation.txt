@@ -1,2 +1,3 @@
 myusername|mypassword|Nurse|
-yourusername|yourpassword|Doctor|
+yourusername|yourpassword|Nurse|
+user|pass|Doctor|

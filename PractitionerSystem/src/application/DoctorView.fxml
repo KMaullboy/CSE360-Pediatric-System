@@ -157,7 +157,7 @@
                   <Font size="11.0" />
                </font>
             </Label>
-            <Button fx:id="messagesButton" layoutX="710.0" layoutY="8.0" mnemonicParsing="false" onAction="#viewMessages" prefHeight="33.0" prefWidth="90.0" style="-fx-background-color: #083d77; -fx-background-radius: 10;" text="Messages" textFill="WHITE" />
+            <Button layoutX="710.0" layoutY="8.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="90.0" style="-fx-background-color: #083d77; -fx-background-radius: 10;" text="Messages" textFill="WHITE" />
             <Button fx:id="logoutButton" layoutX="725.0" layoutY="51.0" mnemonicParsing="false" onAction="#switchtoPractitionerLogin" prefHeight="33.0" prefWidth="58.0" style="-fx-background-color: gray; -fx-background-radius: 10;" text="Logout" textFill="WHITE" />
             <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#ebebeb" height="94.0" layoutX="14.0" layoutY="231.0" stroke="#00578d" strokeType="INSIDE" width="157.0" />
             <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#ebebeb" height="94.0" layoutX="183.0" layoutY="229.0" stroke="#00578d" strokeType="INSIDE" width="158.0" />

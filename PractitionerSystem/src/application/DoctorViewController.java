@@ -13,6 +13,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -86,7 +87,9 @@ public class DoctorViewController {
 	private void loadPatientInfo(ActionEvent event) {
 		
 	    String patientID = IDField.getText();
-	    File file = new File(patientID + "_PatientInfo.txt");
+	    
+	    //I CHANGED THIS TO _Visit.txt so it would work
+	    File file = new File(patientID + "_Visit.txt");
 	    
 	    if (file.exists()) {
 	    	
@@ -97,7 +100,13 @@ public class DoctorViewController {
 	            dateOfBirthField.setText(reader.readLine());
 	            ageField.setText(reader.readLine());
 	            dateField.setText(reader.readLine());
-	            // IDField is already set
+	            reader.readLine();// IDField is already set
+	            reader.readLine();//Insurance Name
+	            reader.readLine();//Insurance ID
+	            reader.readLine();//Group Number
+	            reader.readLine();//PharmacyName
+	            reader.readLine();//PharmacyAddress
+	            reader.readLine();//Pharmacy Number
 	            heightField.setText(reader.readLine());
 	            weightField.setText(reader.readLine());
 	            bodyTemperatureField.setText(reader.readLine());
@@ -105,11 +114,12 @@ public class DoctorViewController {
 	            allergiesField.setText(reader.readLine());
 	            healthConcernsField.setText(reader.readLine());
 	            notesField.setText(reader.readLine());
+	            
 	            previousHealthIssuesField.setText(reader.readLine());
 	            previousPrescribedMedsField.setText(reader.readLine());
 	            historyOfImmunizationsField.setText(reader.readLine());
-	            physicalTestFindingsField.setText(reader.readLine());
-	            recommendationsField.setText(reader.readLine());
+	            //physicalTestFindingsField.setText(reader.readLine());
+	            //recommendationsField.setText(reader.readLine());
 	        } catch (IOException e) {
 	        	
 	            showError("Failed to load patient information.");
@@ -130,7 +140,8 @@ public class DoctorViewController {
 	        return;
 	    }
 	    
-	    File file = new File(patientID + "_PatientInfo.txt");
+	    //I CHANGED THIS TO OVERWRITE THE VISIT FILE INSTEAD SINCE THE PATIENT USERNAME/PASSWORD IS IN PATIENTINFO
+	    File file = new File(patientID + "_Visit.txt");
 		
 	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
 	    	
@@ -176,7 +187,7 @@ public class DoctorViewController {
 		        refillsField.setVisible(false);
 		        prescriptionCommentsField.setVisible(false);
 		    }
-	}
+	
 	
 	// Shows prescription fields when "Add New Prescription" button is pressed
 	 @FXML
@@ -233,4 +244,5 @@ public class DoctorViewController {
 		stage.setScene(scene);
 		stage.show();
 	}
+}
 	

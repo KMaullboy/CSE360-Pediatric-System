@@ -3,6 +3,7 @@ package application;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -185,6 +186,55 @@ public class NurseViewController {
 			e.printStackTrace();
 		}
     }
+	
+	public void getPreviousInfo(ActionEvent event) throws IOException
+	{
+		//Get the user ID that was entered
+		ID = IDField.getText();
+		
+		String path2 = ID + "_Visit.txt";
+		
+
+		File f = new File(path2);
+		
+		//If the user has previous health information from a previous visit
+		if (f.exists())
+		{
+			//Read that file
+			br = new BufferedReader(new FileReader(path2));
+			
+			try {
+			
+			//Read in the previous visit information
+			firstNameField.setText(br.readLine());
+    		lastNameField.setText(br.readLine());
+    		dateOfBirthField.setText(br.readLine());
+    		ageField.setText(br.readLine());
+    		dateField.setText(br.readLine());
+    		br.readLine();
+    		insuranceNameField.setText(br.readLine());
+    		memberIDField.setText(br.readLine());
+    		groupNumberField.setText(br.readLine());
+    		pharmacyNameField.setText(br.readLine());
+    		pharmacyAddressField.setText(br.readLine());
+    		pharmacyPhoneNumberField.setText(br.readLine());
+    		
+    		//Read over the lines that we do not need
+    		for (int i = 0; i < 7; i++)
+    		{
+    			br.readLine();
+    		}
+    		
+			previousHealthIssuesField.setText(br.readLine());
+    		previousPrescribedMedsField.setText(br.readLine());
+    		historyField.setText(br.readLine());
+    		
+			} catch(IOException e) {
+				//Error occurred
+			}
+		}
+		
+	}
 	
 	/*
 	 * switchtoPractitionerLogin() is called when the user clicks "Logout" in the 
