@@ -51,7 +51,7 @@ public class PatientViewController {
     @FXML
     private Label date;
     
-    private SortedMap<String, ViewInfo> visits = new TreeMap<>();
+    private SortedMap<String, ViewInfo> visits = new TreeMap<>(java.util.Collections.reverseOrder());
 	
     public void init(String name) throws IOException {
         String filename = name + "_PatientInfo.txt";
@@ -73,20 +73,30 @@ public class PatientViewController {
             e.printStackTrace(); 
         }
         
-        filename = name + "_Visit.txt";
-        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
+        int i = 1;
+        filename = "";
+
+        while (true) { // Continue until no more files can be found
+            filename = name + "_Visit0" + Integer.toString(i) + ".txt";
+
+            try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
                 ViewInfo newInfo = new ViewInfo();
-                newInfo.firstName = line;
+
+                newInfo.firstName = reader.readLine();
                 newInfo.lastName = reader.readLine();
                 newInfo.dateOfBirth = reader.readLine();
-                newInfo.age = reader.readLine();
+                newInfo.age = reader.readLine(); 
                 newInfo.date = reader.readLine();
                 newInfo.ID = reader.readLine();
-                newInfo.height = reader.readLine();
-                newInfo.weight = reader.readLine();
-                newInfo.bodyTemperature = reader.readLine();
+                newInfo.insuranceName = reader.readLine();
+                newInfo.memberID = reader.readLine();
+                newInfo.groupNumber = reader.readLine();
+                newInfo.pharmacyName = reader.readLine();
+                newInfo.pharmacyAddress = reader.readLine();
+                newInfo.pharmacyPhoneNumber = reader.readLine();
+                newInfo.height = reader.readLine(); 
+                newInfo.weight = reader.readLine(); 
+                newInfo.bodyTemperature = reader.readLine(); 
                 newInfo.bloodPressure = reader.readLine();
                 newInfo.allergies = reader.readLine();
                 newInfo.healthConcerns = reader.readLine();
@@ -94,20 +104,20 @@ public class PatientViewController {
                 newInfo.previousHealthIssues = reader.readLine();
                 newInfo.previousPrescribedMeds = reader.readLine();
                 newInfo.history = reader.readLine();
-                
                 visits.put(newInfo.date, newInfo);
+                
+            } catch (Exception e) {
+                break;
             }
-            reader.close();
-        }
-        catch (Exception e) {
-            e.printStackTrace(); 
+
+            i++; 
         }
         
         ObservableList<String> visitDates = FXCollections.observableArrayList(visits.keySet());
         dropdown.setItems(visitDates);
         
         if (!visits.isEmpty()) {
-            dropdown.setValue(visits.lastKey());
+            dropdown.setValue(visits.firstKey());
         }
         
         if (firstName != null && !firstName.isEmpty() && lastName != null && !lastName.isEmpty()) {

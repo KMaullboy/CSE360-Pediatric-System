@@ -2,7 +2,7 @@ Joe
 Everyman
 dob
 33
-4/9/2024
+3/8/2023
 km049900000
 insuranceName
 memberID
@@ -20,8 +20,8 @@ Notes
 Health Issues
 Medications
 Immunizations
-findings2
-recommendations2
+
+
 
 
 
