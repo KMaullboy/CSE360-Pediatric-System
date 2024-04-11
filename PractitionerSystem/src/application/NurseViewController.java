@@ -121,7 +121,7 @@ public class NurseViewController {
         			return;
     			}
     			
-            		String path1 = ID + "_Visit.txt";
+            		String path1 = ID + "_CurrentVisit.txt";
             		String path2 = ID + "_PatientInfo.txt";
             		
         			File f = new File(path2);
@@ -191,7 +191,7 @@ public class NurseViewController {
 		//Get the user ID that was entered
 		ID = IDField.getText();
 		
-		String path2 = ID + "_Visit.txt";
+		String path2 = ID + "_CurrentVisit.txt";
 		
 
 		File f = new File(path2);

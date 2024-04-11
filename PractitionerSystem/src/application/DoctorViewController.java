@@ -69,6 +69,8 @@ public class DoctorViewController {
 	
 	public String insuranceName, memberID, groupNumber, pharmacyName, pharmacyAddress, pharmacyPhoneNumber;
 	
+	public String fileName = "";
+	
 	// Identifies Error & Success messages
 	 private void showError(String message) {
 		 
@@ -91,7 +93,7 @@ public class DoctorViewController {
 	    String patientID = IDField.getText();
 	    
 	    //I CHANGED THIS TO _Visit.txt so it would work
-	    File file = new File(patientID + "_Visit.txt");
+	    File file = new File(patientID + "_CurrentVisit.txt");
 	    
 	    if (file.exists()) {
 	    	
@@ -143,9 +145,29 @@ public class DoctorViewController {
 	    }
 	    
 	    //I CHANGED THIS TO OVERWRITE THE VISIT FILE INSTEAD SINCE THE PATIENT USERNAME/PASSWORD IS IN PATIENTINFO
-	    File file = new File(patientID + "_Visit.txt");
-		
+	    int visitNumber = 1;
+	    
+	    //fileName is the name of the most recent visit# (Has same info as CurrentVisit)
+	    File file = new File(fileName);
+	    
+	    //If the new filename has not been created already
+	    if (fileName.equals(""))
+	    {
+	    	fileName = patientID + "_Visit" + String.format("%02d", visitNumber) + ".txt";
+	    	file = new File(fileName);
+	    	
+	    	//Increment the number at the end of the file name until we get a filename that does not exist
+	    	while (file.exists())
+		    {
+	    		visitNumber++;
+	    		fileName = patientID + "_Visit" + String.format("%02d", visitNumber) + ".txt";
+		    	file = new File(fileName);
+		    }
+	    }
+	    
 	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+	    	
+	    	System.out.println("area1");
 	    	
 	        writer.write(firstNameField.getText() + "\n");
 	        writer.write(lastNameField.getText() + "\n");
@@ -153,6 +175,8 @@ public class DoctorViewController {
 	        writer.write(ageField.getText() + "\n");
 	        writer.write(dateField.getText() + "\n");
 	        writer.write(IDField.getText() + "\n");
+	        
+	        System.out.println("area1");
 	        
 	        //I Added these - Kaleb
 	        writer.write(insuranceName + "\n");
@@ -162,6 +186,8 @@ public class DoctorViewController {
 	        writer.write(pharmacyAddress + "\n");
 	        writer.write(pharmacyPhoneNumber + "\n");
 	        /////////////////////////////////////////
+	        
+	        System.out.println("area2");
 	        
 	        writer.write(heightField.getText() + "\n");
 	        writer.write(weightField.getText() + "\n");
@@ -182,7 +208,14 @@ public class DoctorViewController {
 	        writer.write(refillsField.getText() + "\n");
 	        writer.write(prescriptionCommentsField.getText());
 	        
-	        showSuccess("Information saved successfully.");        
+	        System.out.println("area3");
+	        
+	        showSuccess("Information saved successfully.");    
+	        
+	        //This saves the info as in a Current Visit file as well
+	        System.out.println("Saved visit#");
+	        saveCurrentVisit();
+	        
 	    } catch (IOException e) {
 	    	
 	        showError("Failed to save patient information.");
@@ -199,6 +232,61 @@ public class DoctorViewController {
 		        refillsField.setVisible(false);
 		        prescriptionCommentsField.setVisible(false);
 		    }
+		 
+		 public void saveCurrentVisit()
+		 {
+			 String patientID = IDField.getText();
+			    if (patientID.isEmpty()) {
+			        showError("Patient ID is required.");
+			        return;
+			    }
+			    
+			    //I CHANGED THIS TO OVERWRITE THE VISIT FILE INSTEAD SINCE THE PATIENT USERNAME/PASSWORD IS IN PATIENTINFO
+			    File file = new File(patientID + "_CurrentVisit.txt");
+				
+			    try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+			    	
+			        writer.write(firstNameField.getText() + "\n");
+			        writer.write(lastNameField.getText() + "\n");
+			        writer.write(dateOfBirthField.getText() + "\n");
+			        writer.write(ageField.getText() + "\n");
+			        writer.write(dateField.getText() + "\n");
+			        writer.write(IDField.getText() + "\n");
+			        
+			        //I Added these - Kaleb
+			        writer.write(insuranceName + "\n");
+			        writer.write(memberID + "\n");
+			        writer.write(groupNumber + "\n");
+			        writer.write(pharmacyName + "\n");
+			        writer.write(pharmacyAddress + "\n");
+			        writer.write(pharmacyPhoneNumber + "\n");
+			        /////////////////////////////////////////
+			        
+			        writer.write(heightField.getText() + "\n");
+			        writer.write(weightField.getText() + "\n");
+			        writer.write(bodyTemperatureField.getText() + "\n");
+			        writer.write(bloodPressureField.getText() + "\n");
+			        writer.write(allergiesField.getText() + "\n");
+			        writer.write(healthConcernsField.getText() + "\n");
+			        writer.write(notesField.getText() + "\n");
+			        writer.write(previousHealthIssuesField.getText() + "\n");
+			        writer.write(previousPrescribedMedsField.getText() + "\n");
+			        writer.write(historyOfImmunizationsField.getText() + "\n");
+			        writer.write(physicalTestFindingsField.getText() + "\n");
+			        writer.write(recommendationsField.getText() + "\n");
+			        // Append prescription information only if new or updated
+			        writer.write(medicationField.getText() + "\n");
+			        writer.write(prescribedByField.getText() + "\n");
+			        writer.write(qtyDurationField.getText() + "\n");
+			        writer.write(refillsField.getText() + "\n");
+			        writer.write(prescriptionCommentsField.getText());
+			        
+			        showSuccess("Information saved successfully.");        
+			    } catch (IOException e) {
+			    	
+			        showError("Failed to save patient information.");
+			    }
+		 }
 	
 	
 	// Shows prescription fields when "Add New Prescription" button is pressed
@@ -225,7 +313,21 @@ public class DoctorViewController {
 	         return;
 	     }
 	     
-	     File file = new File(patientID + "_Visit.txt");
+	     int visitNumber = 1;
+	     File file = new File(fileName);
+	     
+	     if (fileName.equals(""))
+	     {
+	    	 fileName = patientID + "_Visit" + String.format("%02d", visitNumber) + ".txt";
+		    	
+		     //Increment the number at the end of the file name until we get a filename that does not exist
+		     while (file.exists())
+			 {
+		    	 visitNumber++;
+		    	 fileName = patientID + "_Visit" + String.format("%02d", visitNumber) + ".txt";
+			     file = new File(fileName);
+			 }
+	     }
 	     
 	     // Append the prescription information to the file
 	     try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) { // true for appending
